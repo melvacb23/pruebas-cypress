@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-06-15T23:56:03.073Z",
+    "end": "2026-06-15T23:56:06.952Z",
+    "duration": 3879,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "76668b19-1979-4e6e-9512-33d4bd06ede4",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ejercicio6.cy.js",
+      "file": "cypress\\e2e\\ejercicio6.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "810292b2-186d-4270-b407-e3961dd70a7e",
+          "title": "Ejercicio 6 - Interceptar petición HTTP",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Debe simular respuesta del servidor",
+              "fullTitle": "Ejercicio 6 - Interceptar petición HTTP Debe simular respuesta del servidor",
+              "timedOut": null,
+              "duration": 1697,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '/api/users', {\n  statusCode: 200,\n  body: [{\n    id: 1,\n    name: 'Juan'\n  }]\n}).as('getUsers');\ncy.visit('https://example.cypress.io');\ncy.window().then(win => {\n  return win.fetch('/api/users');\n});\ncy.wait('@getUsers').then(interception => {\n  expect(interception.response.statusCode).to.eq(200);\n  expect(interception.response.body[0]).to.have.property('name', 'Juan');\n});",
+              "err": {},
+              "uuid": "214b9981-ec7a-4192-89f1-97b8e140db7f",
+              "parentUUID": "810292b2-186d-4270-b407-e3961dd70a7e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "214b9981-ec7a-4192-89f1-97b8e140db7f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1697,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
